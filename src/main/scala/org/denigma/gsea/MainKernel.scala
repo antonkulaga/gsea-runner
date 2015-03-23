@@ -22,6 +22,9 @@ object MainKernel extends Bootable with App
 
   var main:ActorRef = null
 
+  println(getClass.getResource("/public/hello.txt"))
+
+
 
   override def startup(): Unit = {
 

@@ -35,7 +35,7 @@ class Main  extends Actor with ActorLogging{
     name = "workerRouter")
 
 
-  val route: Route =
+  val route =
     path("order" / IntNumber) { id =>
       (get | put) { ctx =>
         ctx.complete("Received " + ctx.request.method.name + " request for order " + id)
