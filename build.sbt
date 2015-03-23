@@ -1,7 +1,6 @@
 import NativePackagerKeys._
 import com.typesafe.sbt.SbtNativePackager.packageArchetype
-
-packageArchetype.akka_application
+import com.typesafe.sbt.web.SbtWeb.autoImport
 
 
 name := "gsea-runner"
@@ -35,6 +34,8 @@ libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % akkaVersion
 libraryDependencies += "com.typesafe.akka" %% "akka-actor" % akkaVersion
 
 mainClass in Compile := Some("org.denigma.gsea.MainKernel")
+
+(managedClasspath in Runtime) += (packageBin in Assets).value
 
 lazy val runner = (project in file("."))
   .enablePlugins(SbtWeb)

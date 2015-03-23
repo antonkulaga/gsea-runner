@@ -16,7 +16,7 @@ import scala.concurrent.Future
 /**
  * For running as kernel
  */
-class MainKernel extends Bootable
+object MainKernel extends Bootable with App
 {
   implicit val system = ActorSystem()
 
@@ -34,14 +34,7 @@ class MainKernel extends Bootable
     system.shutdown()
   }
 
+  startup()
 
 
 }
-
-/**
- * For running from sbt
- */
-object Runner extends App {
-  (new MainKernel).startup()
-}
-
