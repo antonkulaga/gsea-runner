@@ -1,51 +1,40 @@
-import NativePackagerKeys._
-import com.typesafe.sbt.SbtNativePackager.packageArchetype
-import com.typesafe.sbt.web
-import web.SbtWeb.autoImport
-import web.Import.WebKeys._
+import com.typesafe.sbt.packager.archetypes.ServerLoader.Upstart
+import com.typesafe.sbt.web.Import.WebKeys._
+import com.typesafe.sbt.packager.archetypes.TemplateWriter
 
 name := "gsea-runner"
 
-version := "0.1.0"
+version := "0.1.1"
 
 scalaVersion := "2.11.6"
 
 bintraySettings
 
-resolvers += sbt.Resolver.bintrayRepo("denigma", "denigma-releases")
-
-//resolvers += sbt.Resolver.bintrayRepo("inthenow", "releases")
-
 val akkaVersion = "2.3.9"
 
-val akkaHttpVersion = "1.0-M4"
+val akkaHttpVersion = "1.0-RC1"
 
-val scalaTagsVersion =  "0.4.6"
+val scalaTagsVersion =  "0.5.1"
 
 val zcheckVersion = "0.6.1"
 
 val scalaCheckVersion = "1.12.2"
 
-//val rJavaVersion = "0.9-7"
+resolvers += sbt.Resolver.bintrayRepo("denigma", "denigma-releases")
 
 libraryDependencies += "com.typesafe.akka" %% "akka-stream-experimental" % akkaHttpVersion
 
-libraryDependencies += "com.typesafe.akka" %% "akka-http-experimental" % akkaHttpVersion
+libraryDependencies += "com.typesafe.akka" %% "akka-http-scala-experimental" % akkaHttpVersion
 
 libraryDependencies += "com.typesafe.akka" %% "akka-http-core-experimental" % akkaHttpVersion
 
-libraryDependencies += "com.lihaoyi" %% "scalatags" % scalaTagsVersion
+libraryDependencies += "com.typesafe.akka" %% "akka-http-testkit-scala-experimental" % akkaHttpVersion
 
-libraryDependencies += "com.typesafe.akka" %% "akka-kernel" % akkaVersion
+libraryDependencies += "com.lihaoyi" %% "scalatags" % scalaTagsVersion
 
 libraryDependencies += "com.typesafe.akka" %% "akka-actor" % akkaVersion
 
-//libraryDependencies += "com.github.inthenow" %% "zcheck" % zcheckVersion
-
-//libraryDependencies += "com.github.inthenow" %% "scalacheck" % scalaCheckVersion % "test"
-
-
-mainClass in Compile := Some("org.denigma.gsea.MainKernel")
+mainClass in Compile := Some("org.denigma.gsea.Main")
 
 managedResourceDirectories in Compile += (webModuleDirectory in Assets).value
 
@@ -55,9 +44,14 @@ WebKeys.packagePrefix in Assets := "public/"
 
 (managedClasspath in Runtime) += (packageBin in Assets).value
 
-
-//testOptions in Test += Tests.Argument(TestFrameworks.ScalaCheck)
-
 lazy val runner = (project in file("."))
   .enablePlugins(SbtWeb)
-  .enablePlugins(AkkaAppPackaging)
+  .enablePlugins(JavaServerAppPackaging)
+
+maintainer in Linux := "Anton Kulaga <antonkulaga@gmail.com>"
+
+packageSummary in Linux := "Runner for gene set enrichment analysis"
+
+packageDescription := "Runner for gene set enrichement analysis"
+
+serverLoading in Debian := Upstart
