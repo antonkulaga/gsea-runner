@@ -244,6 +244,7 @@ trait BasicLogin extends BindableView
 object Session {
 
   val currentUser:Var[Option[String]]= Var(None)
+  val userChange: Rx[(Option[String], Option[String])] = currentUser.unique().zip()
 
   def login(str:String) = str match {
     case "" | null | "guest" => Session.currentUser.set(None)
@@ -252,7 +253,7 @@ object Session {
 
   def logout() = currentUser.set(None)
 
-  val username = currentUser.map{
+  val username: Rx[String] = currentUser.map{
     case Some(str) => localName(str)
     case None=> "guest"
   }

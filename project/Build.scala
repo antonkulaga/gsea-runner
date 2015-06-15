@@ -17,8 +17,9 @@ object Build extends sbt.Build {
 	lazy val commonSettings = Seq(
 		scalaVersion := Versions.scala,
 		organization := "org.denigma",
-		testFrameworks += new TestFramework("utest.runner.Framework"),
 		resolvers += sbt.Resolver.bintrayRepo("denigma", "denigma-releases"),
+		resolvers += sbt.Resolver.bintrayRepo("softprops", "maven"),//for Re-Try
+		resolvers += sbt.Resolver.bintrayRepo("inthenow", "releases"), //for some transitive dependencies
 		libraryDependencies ++= Dependencies.testing.value
 	)
 

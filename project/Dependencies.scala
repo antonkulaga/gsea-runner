@@ -5,7 +5,7 @@ import sbt._
 object Dependencies {
 
 	lazy val testing = Def.setting(Seq(
-		"com.lihaoyi" %%% "utest" % Versions.utest % "test"
+		"org.scalatest" %%% "scalatest" % Versions.scalatest % "test"
 	))
 
 	lazy val akka = Def.setting(Seq(
@@ -29,8 +29,6 @@ object Dependencies {
 
 		"org.querki" %%% "jquery-facade" % Versions.jqueryFacade,
 
-		"org.querki" %%% "querki-jsext" % Versions.jsext,
-
 		"org.denigma" %%% "binding" % Versions.binding
 
 	))
@@ -40,8 +38,9 @@ object Dependencies {
 
 		"org.webjars" % "Semantic-UI" % Versions.semanticUI,
 
-		"org.webjars" % "selectize.js" % Versions.selectize
+		"org.webjars" % "selectize.js" % Versions.selectize,
 
+		"org.webjars" % "codemirror" % Versions.codemirror
 
 	))
 
@@ -52,7 +51,11 @@ object Dependencies {
 	))
 
 	val otherJvm = Def.setting(Seq(
-		"me.lessis" %% "retry" % Versions.retry
+		"me.lessis" %% "retry" % Versions.retry,
+
+		"com.github.t3hnar" %% "scala-bcrypt" % Versions.bcrypt,
+
+		"commons-codec" % "commons-codec" % Versions.apacheCodec
 	))
 
 

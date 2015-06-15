@@ -1,0 +1,18 @@
+<section class="ui green segment" data-view="notebook">
+  <section class="ui blue segment" data-view="code">
+    <section data-template="true" class="ui grid" data-view="code-cell">
+        <div class="ui secondary row segment">
+          <div class="one wide column">In [ ]:</div>
+          <div class="ten wide column">
+            <textarea data-bind-code-r="code"> </textarea>
+          </div>
+        </div>
+        <div class="ui secondary row segment">
+          <div class="one wide column">Out [ ]:</div>
+          <div class="ten wide column">
+            <textarea data-bind-code-r="result" data-showif="hasResult" data-readonly="true"> </textarea>
+          </div>
+        </div>
+    </section>
+  </section>
+</section>

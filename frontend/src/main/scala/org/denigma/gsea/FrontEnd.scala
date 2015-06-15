@@ -48,6 +48,8 @@ object FrontEnd extends BindableView with scalajs.js.JSApp
   @JSExport
   def main(): Unit = {
     this.bindView(this.viewElement)
+    val cookies = dom.document.cookie.split(";")
+    dom.alert(cookies.mkString("\n"))
     this.login("guest") //TODO: change it when session mechanism will work well
   }
 

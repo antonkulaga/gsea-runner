@@ -1,14 +1,12 @@
 package org.denigma.gsea.views
 
-import org.denigma.binding.binders.extractors.EventBinding
-import org.denigma.binding.models.MenuItem
 import org.denigma.binding.views.BindableView
 import org.denigma.binding.views.collections.CollectionView
-import org.scalajs.dom
 import org.scalajs.dom.raw.HTMLElement
 import rx.Rx
 import rx.core.Var
 import rx.ops._
+
 import scala.collection.immutable.Map
 
 object TestData{

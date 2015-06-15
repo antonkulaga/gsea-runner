@@ -9,17 +9,19 @@ object Versions extends WebJarsVersions with RLangVersions with ScalaJsVersions 
 
   val retry = "0.2.1"
 
+  val bcrypt = "2.4"
+
+  val apacheCodec = "1.10"
+
 }
 
 trait ScalaJsVersions {
 
-  val jqueryFacade = "0.5"
+  val jqueryFacade = "0.6"
 
-  val jsext = "0.5"
+  val dom ="0.8.1"
 
-  val dom = "0.8.0"
-
-  val binding = "0.7.12"
+  val binding = "0.7.15"
 
 }
 
@@ -38,7 +40,8 @@ trait SharedVersions
 
   val productCollections = "1.4.2"
 
-  val utest = "0.3.1"
+  val scalatest = "3.0.0-SNAP5"
+
 }
 
 
@@ -56,9 +59,9 @@ trait WebJarsVersions{
 
   val semanticUI = "1.12.3"
 
-  val selectize = "0.12.0"
+  val selectize = "0.12.1"
 
   val threeJS = "r66"
 
-  val codemirror = "4.11"
+  val codemirror = "5.3"
 }
