@@ -1,48 +1,51 @@
-import org.scalajs.sbtplugin.ScalaJSPlugin
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt._
 
+
 object Dependencies {
 
-	lazy val testing = Def.setting(Seq(
-		"org.scalatest" %%% "scalatest" % Versions.scalatest % "test"
-	))
+	//libs for testing
+  lazy val testing = Def.setting(Seq(
+		"org.scalatest" %%% "scalatest" % Versions.scalaTest
+  ))
 
+	//akka-related libs
 	lazy val akka = Def.setting(Seq(
-		"com.typesafe.akka" %% "akka-stream-experimental" % Versions.akkaHttp,
 
-		"com.typesafe.akka" %% "akka-http-core-experimental" % Versions.akkaHttp,
-
-		"com.typesafe.akka" %% "akka-http-experimental" % Versions.akkaHttp,
+		"org.denigma" %%% "akka-http-extensions" % Versions.akkaHttpExtensions,
 
 		"com.typesafe.akka" %% "akka-http-testkit-experimental" % Versions.akkaHttp
 	))
 
-	lazy val templates = Def.setting(Seq(
-		"com.github.japgolly.scalacss" %%% "core" % Versions.scalaCSS,
 
-		"com.github.japgolly.scalacss" %%% "ext-scalatags" %  Versions.scalaCSS
-	))
-
+	//scalajs libs
 	lazy val sjsLibs= Def.setting(Seq(
 		"org.scala-js" %%% "scalajs-dom" % Versions.dom,
 
-		"org.querki" %%% "jquery-facade" % Versions.jqueryFacade,
+		"org.querki" %%% "jquery-facade" % Versions.jqueryFacade, //scalajs facade for jQuery + jQuery extensions
 
-		"org.denigma" %%% "binding" % Versions.binding
-
+		"org.denigma" %%% "codemirror-facade" % Versions.codemirrorFacade
 	))
 
+	//dependencies on javascript libs
 	lazy val webjars= Def.setting(Seq(
-		"org.webjars" % "jquery" % Versions.jquery,
 
-		"org.webjars" % "Semantic-UI" % Versions.semanticUI,
+		"org.webjars" % "Semantic-UI" % Versions.semanticUI, //css theme, similar to bootstrap
 
-		"org.webjars" % "selectize.js" % Versions.selectize,
+		"org.webjars" % "selectize.js" % Versions.selectize, //select control
 
 		"org.webjars" % "codemirror" % Versions.codemirror
-
 	))
+
+	//common purpose libs
+	lazy val commonShared: Def.Initialize[Seq[ModuleID]] = Def.setting(Seq(
+		"com.github.japgolly.scalacss" %%% "core" % Versions.scalaCSS,
+
+		"com.github.japgolly.scalacss" %%% "ext-scalatags" %  Versions.scalaCSS,
+	
+		"org.denigma" %%% "binding-controls" % Versions.controls
+	))
+
 
 	val RLang = Def.setting(Seq(
 		"org.rosuda.REngine" % "REngine" % Versions.REngine,
@@ -51,17 +54,11 @@ object Dependencies {
 	))
 
 	val otherJvm = Def.setting(Seq(
-		"me.lessis" %% "retry" % Versions.retry,
-
-		"com.github.t3hnar" %% "scala-bcrypt" % Versions.bcrypt,
-
-		"commons-codec" % "commons-codec" % Versions.apacheCodec
+		"me.lessis" %% "retry" % Versions.retry
 	))
 
 
 	val compilers = Def.setting(Seq(
 		"org.scala-lang" % "scala-compiler" % Versions.scala
 	))
-
-
 }
